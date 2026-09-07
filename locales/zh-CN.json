@@ -738,8 +738,8 @@
     },
     {
       "key": "function tV({prefix:a,content:b,progressMessage:c,customTitle:e}){if(e)return",
-      "val": "function zhCnRunningSummary(a){if(typeof a!==\"string\")return a;return a.replace(/(\\d+) subagents\\/tasks running/g,\"$1 个子代理/任务运行中\").replace(/(\\d+) subagents? running/g,\"$1 个子代理运行中\").replace(/(\\d+) tasks? running/g,\"$1 个任务运行中\").replace(/(\\d+) active goals?/g,\"$1 个进行中的目标\")}function zhCnActivityText(a){if(typeof a!==\"string\")return a;var f=a.match(/^(\\d+) active goals?$/);if(f)return f[1]+\" 个进行中的目标\";var b=a.match(/^Searching (.+)$/);if(b)return\"搜索中 \"+b[1];var c=a.match(/^Searched (.+)$/);if(c)return\"已搜索 \"+c[1];var d=a.match(/^Timed (\\d+(?:\\.\\d+)?) seconds?$/);if(d)return\"已计时 \"+d[1]+\" 秒\";var b=a.match(/^(Run|Download) (.+) finished$/);if(b)return (b[1]===\"Run\"?\"运行\":\"下载\")+\" \"+b[2]+\" 已完成\";return ({\"\\u0047oal\":\"目标\",\"Analyzed\":\"已分析\",\"Analyzing\":\"分析中\",\"Reading\":\"读取中\",\"Read\":\"已读取\",\"Reading page\":\"正在读取页面\",\"Created outline\":\"已创建大纲\",\"Read page\":\"已读取页面\",\"Searched\":\"已搜索\",\"Searching\":\"搜索中\",\"Explored\":\"已探索\",\"Exploring\":\"探索中\",\"Edited\":\"已编辑\",\"Editing\":\"编辑中\",\"Ran\":\"已运行\",\"Running\":\"运行中\",\"Run\":\"运行\",\"Run Task\":\"运行任务\",\"Running Task\":\"正在运行任务\",\"Ran Task\":\"已运行任务\",\"Task\":\"任务\"}[a]??a)}function zhCnActivityTitle(a){if(typeof a!==\"string\")return a;if(a===\"Searching web\")return\"搜索网络\";if(a===\"Searched web\")return\"已搜索网络\";return zhCnActivityText(a)}function tV({prefix:a,content:b,progressMessage:c,customTitle:e}){if(e)return"
-   },
+      "val": "function zhCnRunningSummary(a){if(typeof a!==\"string\")return a;return a.replace(/(\\d+) subagents\\/tasks running/g,\"$1 个子代理/任务运行中\").replace(/(\\d+) subagents? running/g,\"$1 个子代理运行中\").replace(/(\\d+) tasks? running/g,\"$1 个任务运行中\").replace(/(\\d+) active goals?/g,\"$1 个进行中的目标\")}function zhCnActivityText(a){if(typeof a!==\"string\")return a;var g=a.match(/^(\\d+) questions?$/);if(g)return g[1]+\" 个问题\";var f=a.match(/^(\\d+) active goals?$/);if(f)return f[1]+\" 个进行中的目标\";var b=a.match(/^Searching (.+)$/);if(b)return\"搜索中 \"+b[1];var c=a.match(/^Searched (.+)$/);if(c)return\"已搜索 \"+c[1];var d=a.match(/^Timed (\\d+(?:\\.\\d+)?) seconds?$/);if(d)return\"已计时 \"+d[1]+\" 秒\";var b=a.match(/^(Run|Download) (.+) finished$/);if(b)return (b[1]===\"Run\"?\"运行\":\"下载\")+\" \"+b[2]+\" 已完成\";return ({\"Asking\":\"提问中\",\"Asked\":\"已提问\",\"\\u0047oal\":\"目标\",\"Analyzed\":\"已分析\",\"Analyzing\":\"分析中\",\"Reading\":\"读取中\",\"Read\":\"已读取\",\"Reading page\":\"正在读取页面\",\"Created outline\":\"已创建大纲\",\"Read page\":\"已读取页面\",\"Searched\":\"已搜索\",\"Searching\":\"搜索中\",\"Explored\":\"已探索\",\"Exploring\":\"探索中\",\"Edited\":\"已编辑\",\"Editing\":\"编辑中\",\"Ran\":\"已运行\",\"Running\":\"运行中\",\"Run\":\"运行\",\"Run Task\":\"运行任务\",\"Running Task\":\"正在运行任务\",\"Ran Task\":\"已运行任务\",\"Task\":\"任务\"}[a]??a)}function zhCnActivityTitle(a){if(typeof a!==\"string\")return a;if(a===\"Searching web\")return\"搜索网络\";if(a===\"Searched web\")return\"已搜索网络\";return zhCnActivityText(a)}function tV({prefix:a,content:b,progressMessage:c,customTitle:e}){if(e)return"
+    },
     {
       "key": "z.createElement(\"div\",{className:\"flex flex-row items-center gap-1 overflow-hidden whitespace-nowrap\"},e);e=typeof b===\"string\";",
       "val": "z.createElement(\"div\",{className:\"flex flex-row items-center gap-1 overflow-hidden whitespace-nowrap\"},zhCnActivityTitle(e));e=typeof b===\"string\";",
@@ -13712,6 +13712,56 @@
       "key": "className:`w-64 px-3 py-2 rounded-lg shadow-sm ${f?\"opacity-100 pointer-events-auto\":\"opacity-0 pointer-events-none\"}`},c?\"Finish\":\"Next\")",
       "val": "className:`w-64 px-3 py-2 rounded-lg shadow-sm ${f?\"opacity-100 pointer-events-auto\":\"opacity-0 pointer-events-none\"}`},c?\"完成\":\"下一步\")",
       "description": "2.12引導精靈完成與下一步按鈕"
+    },
+    {
+      "key": "z.createElement(\"span\",null,e.length,\" question\",e.length===1?\"\":\"s\")",
+      "val": "z.createElement(\"span\",null,e.length,\" 个问题\")",
+      "description": "2.12提問卡片完成標題"
+    },
+    {
+      "key": "prefix:a?\"Asking\":\"Asked\",content:`${e.length} question${e.length===1?\"\":\"s\"}`",
+      "val": "prefix:a?\"提问中\":\"已提问\",content:`${e.length} 个问题`",
+      "description": "2.12提問卡片活動標題"
+    },
+    {
+      "key": "\"Multi-select\"",
+      "val": "\"多选\"",
+      "description": "2.12提問多選標籤"
+    },
+    {
+      "key": "\"Previous question\"",
+      "val": "\"上一个问题\"",
+      "description": "2.12提問上一個問題"
+    },
+    {
+      "key": "\"Next question\"",
+      "val": "\"下一个问题\"",
+      "description": "2.12提問下一個問題"
+    },
+    {
+      "key": "\"No answer provided\"",
+      "val": "\"未提供回答\"",
+      "description": "2.12提問未回答"
+    },
+    {
+      "key": "a.writeInResponse&&f.push(`${a.writeInResponse} (write-in)`)",
+      "val": "a.writeInResponse&&f.push(`${a.writeInResponse}（自定义回答）`)",
+      "description": "2.12提問自訂回答標記"
+    },
+    {
+      "key": "va?\"Submit\":\"Continue\"",
+      "val": "va?\"提交\":\"继续\"",
+      "description": "2.12提問按鈕提交繼續"
+    },
+    {
+      "key": "va?`Submit${J?\" (Enter)\":\"\"}`:`Continue${J?\" (Enter)\":\"\"}`",
+      "val": "va?`提交${J?\" (Enter)\":\"\"}`:`继续${J?\" (Enter)\":\"\"}`",
+      "description": "2.12提問按鈕提示"
+    },
+    {
+      "key": "J?`Skip (esc), Skip All (${fj?\"\\u2318esc\":\"Ctrl+esc\"})`:\"Skip\"",
+      "val": "J?`略过 (esc)，全部略过 (${fj?\"\\u2318esc\":\"Ctrl+esc\"})`:\"略过\"",
+      "description": "2.12提問略過按鈕提示"
     }
   ],
   "descriptions": [

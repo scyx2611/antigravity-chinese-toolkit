@@ -49,6 +49,45 @@
 | SETTINGS-001 | `title:"General"` 與 `sectionTitle:"General"` | 設定分區查找值必須使用同一目標語言，否則開關整區消失 | 同值翻譯 | 同值翻譯 |
 | QUOTA-001 | quota label／bucket renderer 與 `Weekly Limit Remaining`／`Five Hour Limit Remaining` | 後端 `displayName` 動態 lookup；保留英文查找 key | `每週剩餘額度`／`5 小時剩餘額度` | `每周剩余额度`／`5 小时剩余额度` |
 | GIT-001 | `` `${t} ${t===1?"file":"files"} changed` `` | Git 變更檔案數量；保留 `${t}`，不可寫死截圖中的數字 | `` `${t} 個檔案已變更` `` | `` `${t} 个文件已更改` `` |
+| ASK-001 | `z.createElement("span",null,e.length," question",e.length===1?"":"s")` 與 `prefix:a?"Asking":"Asked",content:\`${e.length} question...` | 提問數量與單複數動態；保留 `${e.length}` | `${e.length} 個問題`；`提問中`／`已提問` | `${e.length} 个问题`；`提问中`／`已提问` |
+
+## 已提交紀錄（2026-09-07）
+
+### 2026-09-07 | Antigravity 2.12.2 | `f960faf`
+
+- 範圍：補齊提問工具卡片完成標題（`N question(s)`）、未展開／進行中標題（`Asking/Asked N question(s)`）、多選標籤（`Multi-select`）、上一個/下一個問題按鈕（`Previous/Next question`）、未提供回答（`No answer provided`）、自訂回答標籤（`write-in`）、提交/繼續按鈕（`Submit/Continue`）及略過快捷提示。
+- 來源 anchor：
+  - `z.createElement("span",null,e.length," question",e.length===1?"":"s")`：完成狀態卡片標題。
+  - `prefix:a?"Asking":"Asked",content:\`${e.length} question${e.length===1?"":"s"}\``：提問卡片活動標題。
+  - `"Multi-select"`：多選模式徽章標籤。
+  - `"Previous question"`、`"Next question"`：題目切換按鈕 aria-label 與 tooltip。
+  - `"No answer provided"`：完成檢視未回答狀態。
+  - `a.writeInResponse&&f.push(\`${a.writeInResponse} (write-in)\`)`：自訂輸入回答備註。
+  - `va?"Submit":"Continue"`、`va?\`Submit\${J?" (Enter)":""}\`:\`Continue\${J?" (Enter)":""}\``：提交與繼續按鈕。
+  - `J?\`Skip (esc), Skip All (\${fj?"\\u2318esc":"Ctrl+esc"})\`:"Skip"`：略過與全部略過提示。
+  - `function tV({prefix:a,content:b` 中的 `zhTwActivityText` / `zhCnActivityText`：支援 `^(\d+) questions?$` 正則與 `"Asking"` / `"Asked"` 前綴映射。
+- 類型：固定文字與動態數量模板；保留題目數量 `${e.length}`、快捷鍵變數與自訂回答內容。
+- zh-TW：
+  - `N question(s)` → `N 個問題`
+  - `Asking` / `Asked` → `提問中` / `已提問`
+  - `Multi-select` → `多選`
+  - `Previous question` / `Next question` → `上一個問題` / `下一個問題`
+  - `No answer provided` → `未提供回答`
+  - `(write-in)` → `（自訂回答）`
+  - `Submit` / `Continue` → `提交` / `繼續`
+  - `Skip (esc), Skip All` → `略過 (esc)，全部略過`
+- zh-CN：
+  - `N question(s)` → `N 个问题`
+  - `Asking` / `Asked` → `提问中` / `已提问`
+  - `Multi-select` → `多选`
+  - `Previous question` / `Next question` → `上一个问题` / `下一个问题`
+  - `No answer provided` → `未提供回答`
+  - `(write-in)` → `（自定义回答）`
+  - `Submit` / `Continue` → `提交` / `继续`
+  - `Skip (esc), Skip All` → `略过 (esc)，全部略过`
+- 修改檔案：`locales/zh-TW.json`、`locales/zh-CN.json`、`scripts/validate_locales.js`、本台帳。
+- 驗證：`npm run check` 通過（zh-TW 3,114、zh-CN 3,260 個 unique exact_properties，包含提問卡片專用斷言）；zh-TW（2,876 個替換）與 zh-CN（2,975 個替換）不部署建構均通過前端／Electron 語法檢查並產出 `app.asar.patched`；產出 bundle 驗證確認各項目標詞條替換數量符合預期。
+- 部署與畫面驗收：已成功執行 `--apply --lang zh-TW` 部署並重新啟動客戶端；桌面畫面人工驗收進行中。
 
 ## 已提交紀錄（2026-09-06）
 

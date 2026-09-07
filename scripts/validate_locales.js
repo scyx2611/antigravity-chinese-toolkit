@@ -449,6 +449,28 @@ assertEntryContains('zh-TW', zhTw, '"Enter the SSO URL provided by your IT admin
 assertEntryContains('zh-CN', zhCn, '"Enter the SSO URL provided by your IT admin to connect your work account"', ['"输入 IT 管理员提供的 SSO 网址，以连接你的工作账户"']);
 assertEntryContains('zh-TW', zhTw, '"Sign in with SSO \\u2192"', ['"使用 SSO 登入 \\u2192"']);
 assertEntryContains('zh-CN', zhCn, '"Sign in with SSO \\u2192"', ['"使用 SSO 登录 \\u2192"']);
+const askQuestionDoneKey = 'z.createElement("span",null,e.length," question",e.length===1?"":"s")';
+assertEntryContains('zh-TW', zhTw, askQuestionDoneKey, ['" 個問題"']);
+assertEntryContains('zh-CN', zhCn, askQuestionDoneKey, ['" 个问题"']);
+const askQuestionActiveKey = 'prefix:a?"Asking":"Asked",content:`${e.length} question${e.length===1?"":"s"}`';
+assertEntryContains('zh-TW', zhTw, askQuestionActiveKey, ['"提問中":"已提問"', '${e.length} 個問題']);
+assertEntryContains('zh-CN', zhCn, askQuestionActiveKey, ['"提问中":"已提问"', '${e.length} 个问题']);
+assertEntryContains('zh-TW', zhTw, '"Multi-select"', ['"多選"']);
+assertEntryContains('zh-CN', zhCn, '"Multi-select"', ['"多选"']);
+assertEntryContains('zh-TW', zhTw, '"Previous question"', ['"上一個問題"']);
+assertEntryContains('zh-CN', zhCn, '"Previous question"', ['"上一个问题"']);
+assertEntryContains('zh-TW', zhTw, '"Next question"', ['"下一個問題"']);
+assertEntryContains('zh-CN', zhCn, '"Next question"', ['"下一个问题"']);
+assertEntryContains('zh-TW', zhTw, '"No answer provided"', ['"未提供回答"']);
+assertEntryContains('zh-CN', zhCn, '"No answer provided"', ['"未提供回答"']);
+const askQuestionWriteInKey = 'a.writeInResponse&&f.push(`${a.writeInResponse} (write-in)`)';
+assertEntryContains('zh-TW', zhTw, askQuestionWriteInKey, ['（自訂回答）']);
+assertEntryContains('zh-CN', zhCn, askQuestionWriteInKey, ['（自定义回答）']);
+assertEntryContains('zh-TW', zhTw, 'va?"Submit":"Continue"', ['"提交":"繼續"']);
+assertEntryContains('zh-CN', zhCn, 'va?"Submit":"Continue"', ['"提交":"继续"']);
+const tVPrefixKey = 'function tV({prefix:a,content:b,progressMessage:c,customTitle:e}){if(e)return';
+assertEntryContains('zh-TW', zhTw, tVPrefixKey, ['var g=a.match(/^(\\d+) questions?$/);if(g)return g[1]+" 個問題";', '"Asking":"提問中","Asked":"已提問"']);
+assertEntryContains('zh-CN', zhCn, tVPrefixKey, ['var g=a.match(/^(\\d+) questions?$/);if(g)return g[1]+" 个问题";', '"Asking":"提问中","Asked":"已提问"']);
 
 
 
