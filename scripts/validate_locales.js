@@ -471,6 +471,25 @@ assertEntryContains('zh-CN', zhCn, 'va?"Submit":"Continue"', ['"提交":"继续"
 const tVPrefixKey = 'function tV({prefix:a,content:b,progressMessage:c,customTitle:e}){if(e)return';
 assertEntryContains('zh-TW', zhTw, tVPrefixKey, ['var g=a.match(/^(\\d+) questions?$/);if(g)return g[1]+" 個問題";', '"Asking":"提問中","Asked":"已提問"']);
 assertEntryContains('zh-CN', zhCn, tVPrefixKey, ['var g=a.match(/^(\\d+) questions?$/);if(g)return g[1]+" 个问题";', '"Asking":"提问中","Asked":"已提问"']);
+const furtherActionTitleKey = 'a=e?b||`Sorry, this account is ineligible to use ${a}`:`Further action is required to use ${a}`';
+assertEntryContains('zh-TW', zhTw, furtherActionTitleKey, ['需要採取進一步動作才能使用 ${a}', '抱歉，此帳戶不符合使用 ${a} 的資格']);
+assertEntryContains('zh-CN', zhCn, furtherActionTitleKey, ['需要采取进一步操作才能使用 ${a}', '抱歉，此账户不符合使用 ${a} 的资格']);
+const verifyAccountNoticeKey = '"Please verify your account, then sign in again to continue. Learn more by visiting our"';
+assertEntryContains('zh-TW', zhTw, verifyAccountNoticeKey, ['"請驗證你的帳戶，然後重新登入以繼續。如需瞭解詳情，請參閱我們的 "']);
+assertEntryContains('zh-CN', zhCn, verifyAccountNoticeKey, ['"请验证你的账户，然后重新登录以继续。了解详情，请访问我们的 "']);
+assertEntryContains('zh-TW', zhTw, 'h=e?h:"Verify"', ['h=e?h:"驗證"']);
+assertEntryContains('zh-CN', zhCn, 'h=e?h:"Verify"', ['h=e?h:"验证"']);
+assertEntryContains('zh-TW', zhTw, '"Sign in again"', ['"重新登入"']);
+assertEntryContains('zh-CN', zhCn, '"Sign in again"', ['"重新登录"']);
+assertEntryContains('zh-TW', zhTw, '"Submit Appeal"', ['"提交申訴"']);
+assertEntryContains('zh-CN', zhCn, '"Submit Appeal"', ['"提交申诉"']);
+const ineligibleAccountTitleKey = 'z.createElement("div",{className:"text-lg font-medium mb-1"},"Sorry, this account is ineligible to use ",a)';
+assertEntryContains('zh-TW', zhTw, ineligibleAccountTitleKey, ['`抱歉，此帳戶不符合使用 ${a} 的資格`']);
+assertEntryContains('zh-CN', zhCn, ineligibleAccountTitleKey, ['`抱歉，此账户不符合使用 ${a} 的资格`']);
+assertEntryContains('zh-TW', zhTw, '"Learn more by visiting our"', ['"如需瞭解詳情，請參閱我們的 "']);
+assertEntryContains('zh-CN', zhCn, '"Learn more by visiting our"', ['"了解详情，请访问我们的 "']);
+assertEntryContains('zh-TW', zhTw, '"We apologize for the inconvenience. Please try again later."', ['"造成不便，敬請見諒。請稍後再試。"']);
+assertEntryContains('zh-CN', zhCn, '"We apologize for the inconvenience. Please try again later."', ['"造成不便，敬请谅解。请稍后再试。"']);
 
 
 

@@ -13762,6 +13762,46 @@
       "key": "J?`Skip (esc), Skip All (${fj?\"\\u2318esc\":\"Ctrl+esc\"})`:\"Skip\"",
       "val": "J?`略过 (esc)，全部略过 (${fj?\"\\u2318esc\":\"Ctrl+esc\"})`:\"略过\"",
       "description": "2.12提問略過按鈕提示"
+    },
+    {
+      "key": "a=e?b||`Sorry, this account is ineligible to use ${a}`:`Further action is required to use ${a}`",
+      "val": "a=e?b||`抱歉，此账户不符合使用 ${a} 的资格`:`需要采取进一步操作才能使用 ${a}`",
+      "description": "2.12帳戶資格與進一步動作標題"
+    },
+    {
+      "key": "\"Please verify your account, then sign in again to continue. Learn more by visiting our\"",
+      "val": "\"请验证你的账户，然后重新登录以继续。了解详情，请访问我们的 \"",
+      "description": "2.12帳戶驗證說明文字"
+    },
+    {
+      "key": "h=e?h:\"Verify\"",
+      "val": "h=e?h:\"验证\"",
+      "description": "2.12帳戶驗證按鈕文字"
+    },
+    {
+      "key": "\"Sign in again\"",
+      "val": "\"重新登录\"",
+      "description": "2.12帳戶重新登入按鈕文字"
+    },
+    {
+      "key": "\"Submit Appeal\"",
+      "val": "\"提交申诉\"",
+      "description": "2.12提交申訴按鈕文字"
+    },
+    {
+      "key": "z.createElement(\"div\",{className:\"text-lg font-medium mb-1\"},\"Sorry, this account is ineligible to use \",a)",
+      "val": "z.createElement(\"div\",{className:\"text-lg font-medium mb-1\"},`抱歉，此账户不符合使用 ${a} 的资格`)",
+      "description": "2.12帳戶不符合使用資格標題"
+    },
+    {
+      "key": "\"Learn more by visiting our\"",
+      "val": "\"了解详情，请访问我们的 \"",
+      "description": "2.12帳戶不符合資格瞭解詳情前綴"
+    },
+    {
+      "key": "\"We apologize for the inconvenience. Please try again later.\"",
+      "val": "\"造成不便，敬请谅解。请稍后再试。\"",
+      "description": "2.12帳戶設定抱歉不便說明"
     }
   ],
   "descriptions": [

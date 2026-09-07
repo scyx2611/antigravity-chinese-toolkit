@@ -4953,5 +4953,13 @@
     ,{"key":"va?\"Submit\":\"Continue\"","val":"va?\"提交\":\"繼續\"","description":"2.12提問按鈕提交繼續"}
     ,{"key":"va?`Submit${J?\" (Enter)\":\"\"}`:`Continue${J?\" (Enter)\":\"\"}`","val":"va?`提交${J?\" (Enter)\":\"\"}`:`繼續${J?\" (Enter)\":\"\"}`","description":"2.12提問按鈕提示"}
     ,{"key":"J?`Skip (esc), Skip All (${fj?\"\\u2318esc\":\"Ctrl+esc\"})`:\"Skip\"","val":"J?`略過 (esc)，全部略過 (${fj?\"\\u2318esc\":\"Ctrl+esc\"})`:\"略過\"","description":"2.12提問略過按鈕提示"}
+    ,{"key":"a=e?b||`Sorry, this account is ineligible to use ${a}`:`Further action is required to use ${a}`","val":"a=e?b||`抱歉，此帳戶不符合使用 ${a} 的資格`:`需要採取進一步動作才能使用 ${a}`","description":"2.12帳戶資格與進一步動作標題"}
+    ,{"key":"\"Please verify your account, then sign in again to continue. Learn more by visiting our\"","val":"\"請驗證你的帳戶，然後重新登入以繼續。如需瞭解詳情，請參閱我們的 \"","description":"2.12帳戶驗證說明文字"}
+    ,{"key":"h=e?h:\"Verify\"","val":"h=e?h:\"驗證\"","description":"2.12帳戶驗證按鈕文字"}
+    ,{"key":"\"Sign in again\"","val":"\"重新登入\"","description":"2.12帳戶重新登入按鈕文字"}
+    ,{"key":"\"Submit Appeal\"","val":"\"提交申訴\"","description":"2.12提交申訴按鈕文字"}
+    ,{"key":"z.createElement(\"div\",{className:\"text-lg font-medium mb-1\"},\"Sorry, this account is ineligible to use \",a)","val":"z.createElement(\"div\",{className:\"text-lg font-medium mb-1\"},`抱歉，此帳戶不符合使用 ${a} 的資格`)","description":"2.12帳戶不符合使用資格標題"}
+    ,{"key":"\"Learn more by visiting our\"","val":"\"如需瞭解詳情，請參閱我們的 \"","description":"2.12帳戶不符合資格瞭解詳情前綴"}
+    ,{"key":"\"We apologize for the inconvenience. Please try again later.\"","val":"\"造成不便，敬請見諒。請稍後再試。\"","description":"2.12帳戶設定抱歉不便說明"}
   ]
 }

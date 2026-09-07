@@ -50,8 +50,44 @@
 | QUOTA-001 | quota label／bucket renderer 與 `Weekly Limit Remaining`／`Five Hour Limit Remaining` | 後端 `displayName` 動態 lookup；保留英文查找 key | `每週剩餘額度`／`5 小時剩餘額度` | `每周剩余额度`／`5 小时剩余额度` |
 | GIT-001 | `` `${t} ${t===1?"file":"files"} changed` `` | Git 變更檔案數量；保留 `${t}`，不可寫死截圖中的數字 | `` `${t} 個檔案已變更` `` | `` `${t} 个文件已更改` `` |
 | ASK-001 | `z.createElement("span",null,e.length," question",e.length===1?"":"s")` 與 `prefix:a?"Asking":"Asked",content:\`${e.length} question...` | 提問數量與單複數動態；保留 `${e.length}` | `${e.length} 個問題`；`提問中`／`已提問` | `${e.length} 个问题`；`提问中`／`已提问` |
+| AUTH-001 | `Mvb` 組件中的 `Further action is required to use ${a}` 與 `Please verify your account...` | 帳戶資格與進一步動作面板；保留 `${a}` 產品名稱 | `需要採取進一步動作才能使用 ${a}`、`請驗證你的帳戶...`、`驗證`、`重新登入` | `需要采取进一步操作才能使用 ${a}`、`请验证你的账户...`、`验证`、`重新登录` |
 
 ## 已提交紀錄（2026-09-07）
+
+### 2026-09-07 | Antigravity 2.12.2 | `ae93055`
+
+- 範圍：補齊帳戶資格限制與驗證錯誤面板（`Further action is required to use <app>`、說明文字、`Verify` 按鈕、`Sign in again` 按鈕、`Submit Appeal` 申訴按鈕、無驗證連結時的資格不符標題與說明）。
+- 來源 anchor：
+  - `a=e?b||\`Sorry, this account is ineligible to use \${a}\`:\`Further action is required to use \${a}\``：帳戶資格與進一步動作標題。
+  - `"Please verify your account, then sign in again to continue. Learn more by visiting our"`：帳戶驗證說明文字。
+  - `h=e?h:"Verify"`：驗證按鈕文字。
+  - `"Sign in again"`：重新登入按鈕文字。
+  - `"Submit Appeal"`：提交申訴按鈕與連結預設文字。
+  - `z.createElement("div",{className:"text-lg font-medium mb-1"},"Sorry, this account is ineligible to use ",a)`：資格不符標題。
+  - `"Learn more by visiting our"`：資格不符詳情連結前綴。
+  - `"We apologize for the inconvenience. Please try again later."`：帳戶設定不便道歉說明。
+- 類型：固定文字與模板；保留產品名稱 `${a}` 與 FAQ 連結。
+- zh-TW：
+  - `Further action is required to use ${a}` → `需要採取進一步動作才能使用 ${a}`
+  - `Sorry, this account is ineligible to use ${a}` → `抱歉，此帳戶不符合使用 ${a} 的資格`
+  - `Please verify your account, then sign in again to continue. Learn more by visiting our` → `請驗證你的帳戶，然後重新登入以繼續。如需瞭解詳情，請參閱我們的 `
+  - `Verify` → `驗證`
+  - `Sign in again` → `重新登入`
+  - `Submit Appeal` → `提交申訴`
+  - `Learn more by visiting our` → `如需瞭解詳情，請參閱我們的 `
+  - `We apologize for the inconvenience. Please try again later.` → `造成不便，敬請見諒。請稍後再試。`
+- zh-CN：
+  - `Further action is required to use ${a}` → `需要采取进一步操作才能使用 ${a}`
+  - `Sorry, this account is ineligible to use ${a}` → `抱歉，此账户不符合使用 ${a} 的资格`
+  - `Please verify your account, then sign in again to continue. Learn more by visiting our` → `请验证你的账户，然后重新登录以继续。了解详情，请访问我们的 `
+  - `Verify` → `验证`
+  - `Sign in again` → `重新登录`
+  - `Submit Appeal` → `提交申诉`
+  - `Learn more by visiting our` → `了解详情，请访问我们的 `
+  - `We apologize for the inconvenience. Please try again later.` → `造成不便，敬请谅解。请稍后再试。`
+- 修改檔案：`locales/zh-TW.json`、`locales/zh-CN.json`、`scripts/validate_locales.js`、本台帳。
+- 驗證：`npm run check` 通過（zh-TW 3,122、zh-CN 3,268 個 unique exact_properties，包含專用斷言）；zh-TW（2,885 個替換）與 zh-CN（2,984 個替換）不部署建構均通過語法檢查並產出 `app.asar.patched`；產出 bundle 驗證確認未翻譯英文降為 0。
+- 部署與畫面驗收：未部署；桌面實際畫面仍為 `NOT VERIFIED`。
 
 ### 2026-09-07 | Antigravity 2.12.2 | `f960faf`
 
