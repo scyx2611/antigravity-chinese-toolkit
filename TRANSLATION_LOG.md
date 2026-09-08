@@ -51,6 +51,32 @@
 | GIT-001 | `` `${t} ${t===1?"file":"files"} changed` `` | Git 變更檔案數量；保留 `${t}`，不可寫死截圖中的數字 | `` `${t} 個檔案已變更` `` | `` `${t} 个文件已更改` `` |
 | ASK-001 | `z.createElement("span",null,e.length," question",e.length===1?"":"s")` 與 `prefix:a?"Asking":"Asked",content:\`${e.length} question...` | 提問數量與單複數動態；保留 `${e.length}` | `${e.length} 個問題`；`提問中`／`已提問` | `${e.length} 个问题`；`提问中`／`已提问` |
 | AUTH-001 | `Mvb` 組件中的 `Further action is required to use ${a}` 與 `Please verify your account...` | 帳戶資格與進一步動作面板；保留 `${a}` 產品名稱 | `需要採取進一步動作才能使用 ${a}`、`請驗證你的帳戶...`、`驗證`、`重新登入` | `需要采取进一步操作才能使用 ${a}`、`请验证你的账户...`、`验证`、`重新登录` |
+| GOAL-001 | `title:p.title||p.key`、`var J1=`、`zhTwActivityText` / `zhCnActivityText` | 側欄累積目標標題（單數 `Goal`／複數 `Goals`）；需以活動字典與 `J1` 雙重攔截 | `目標`；`N 個目標` | `目标`；`N 个目标` |
+
+## 變更紀錄（2026-09-08）
+
+### 2026-09-08 | Antigravity 2.12.2 | `8fb8399`
+
+- 範圍：修復側欄／累積區段（Accumulated Sections）中複數 `Goals` 漏翻為「目標」，以及工作區複數 `Workspaces` 漏翻為「工作區」。
+- 來源 anchor：
+  - 後端動態區段：`ph={selector:function(a){return a?.accumulatedSections??[]}}`，`z.createElement(J1,{key:p.key,title:zhTwActivityTitle(p.title||p.key),count:r.length,...})`；後端在目標數量大於 1 或複數時回傳 `p.title = "Goals"`。
+  - 容器組件：`var J1=({title:a,...})=>{a=a==="\u0053kills Used"?"使用的技能":a;`。
+  - 工作區動態標題：`var v=g.length>1?"Workspaces":"Workspace";`。
+- 原因：先前的修正僅處理了單數 `Goal`（`\u0047oal`），未包含複數 `Goals`（`\u0047oals`），導致多個目標時 `zhTwActivityTitle` 查表 fallback 原樣輸出英文 `"Goals"`，且 `J1` 亦未攔截；靜態字典亦缺少 `"Goals"` 與 `"Workspaces"`。
+- 類型：動態與固定文字；保留目標數量與後端項目內容。
+- zh-TW：
+  - `Goals` → `目標`（單複數皆為「目標」；`N goals` → `N 個目標`）。
+  - `Workspaces` → `工作區`。
+- zh-CN：
+  - `Goals` → `目标`（单复数皆为「目标」；`N goals` → `N 个目标`）。
+  - `Workspaces` → `工作区`。
+- 修改檔案：`locales/zh-TW.json`、`locales/zh-CN.json`、`scripts/validate_locales.js`、本台帳。
+- 驗證：
+  - `npm run check` 通過（zh-TW 3,124 unique exact_properties，zh-CN 3,270 unique exact_properties，全覆蓋無重複）。
+  - `node scripts/patcher.js --lang zh-TW` 不部署建構通過（前端替換 2,894 詞條，語法校驗 100% 通過，打包 app.asar.patched 4.32 MB）。
+  - `node scripts/patcher.js --lang zh-CN` 不部署建構通過（前端替換 2,993 詞條，語法校驗 100% 通過，打包 app.asar.patched 4.32 MB）。
+  - VM 動態測試驗證：`zhTwActivityTitle("Goals")`、`zhCnActivityTitle("Goals")`、`zhTwRunningSummary("2 goals")`、`zhCnRunningSummary("2 goals")` 均通過。
+- 部署與畫面驗收：尚未部署；桌面實際畫面仍為 `NOT VERIFIED`。
 
 ## 已提交紀錄（2026-09-07）
 

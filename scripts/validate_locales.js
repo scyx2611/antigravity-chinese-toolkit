@@ -176,10 +176,10 @@ assertEntryWithKeyPrefixContains('zh-CN', zhCn, modelBadgeRendererPrefix, [
 const modelSkillsTitlePrefix = 'var J1=({title:a,titleSuffix:b,count:c,badgeCount:e,actions:f,children:g,collapsible:h=!1';
 const runtimeSkillsTitleKey = 'a=a==="'+ String.fromCharCode(92) + 'u0053kills Used"?';
 assertEntryWithKeyPrefixContains('zh-TW', zhTw, modelSkillsTitlePrefix, [
-  runtimeSkillsTitleKey + '"使用的技能":a;',
+  runtimeSkillsTitleKey + '"使用的技能":a==="' + String.fromCharCode(92) + 'u0047oals"||a==="' + String.fromCharCode(92) + 'u0047oal"?"目標":a;',
 ]);
 assertEntryWithKeyPrefixContains('zh-CN', zhCn, modelSkillsTitlePrefix, [
-  runtimeSkillsTitleKey + '"使用的技能":a;',
+  runtimeSkillsTitleKey + '"使用的技能":a==="' + String.fromCharCode(92) + 'u0047oals"||a==="' + String.fromCharCode(92) + 'u0047oal"?"目标":a;',
 ]);
 const quotaLabelKey = 'label:z.createElement("span",{className:e?"text-secondary-foreground":""},a)';
 const quotaBucketKey = 'z.createElement("span",{className:"text-foreground truncate"},\nm.displayName)';
@@ -490,6 +490,20 @@ assertEntryContains('zh-TW', zhTw, '"Learn more by visiting our"', ['"如需瞭�
 assertEntryContains('zh-CN', zhCn, '"Learn more by visiting our"', ['"了解详情，请访问我们的 "']);
 assertEntryContains('zh-TW', zhTw, '"We apologize for the inconvenience. Please try again later."', ['"造成不便，敬請見諒。請稍後再試。"']);
 assertEntryContains('zh-CN', zhCn, '"We apologize for the inconvenience. Please try again later."', ['"造成不便，敬请谅解。请稍后再试。"']);
+assertEntryContains('zh-TW', zhTw, tVPrefixKey, [
+  'var h=a.match(/^(\\d+) goals?$/);if(h)return h[1]+" 個目標";',
+  '"\\u0047oals":"目標"',
+  '.replace(/(\\d+) goals?/g,"$1 個目標")',
+]);
+assertEntryContains('zh-CN', zhCn, tVPrefixKey, [
+  'var h=a.match(/^(\\d+) goals?$/);if(h)return h[1]+" 个目标";',
+  '"\\u0047oals":"目标"',
+  '.replace(/(\\d+) goals?/g,"$1 个目标")',
+]);
+assertEntryContains('zh-TW', zhTw, '"Goals"', ['"目標"']);
+assertEntryContains('zh-CN', zhCn, '"Goals"', ['"目标"']);
+assertEntryContains('zh-TW', zhTw, '"Workspaces"', ['"工作區"']);
+assertEntryContains('zh-CN', zhCn, '"Workspaces"', ['"工作区"']);
 
 
 
