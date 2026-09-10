@@ -505,6 +505,35 @@ assertEntryContains('zh-CN', zhCn, '"Goals"', ['"目标"']);
 assertEntryContains('zh-TW', zhTw, '"Workspaces"', ['"工作區"']);
 assertEntryContains('zh-CN', zhCn, '"Workspaces"', ['"工作区"']);
 
+const splitSubmenuKey = 'z.createElement(xR,null,z.createElement(T,{name:"splitscreen_vertical_add",size:16,className:"text-secondary-foreground shrink-0"}),z.createElement("span",null,"Split"))';
+assertEntryContains('zh-TW', zhTw, splitSubmenuKey, ['"分割視窗"']);
+assertEntryContains('zh-CN', zhCn, splitSubmenuKey, ['"分割窗口"']);
+assertEntryContains('zh-TW', zhTw, 'z.createElement("span",null,"Split")', ['"分割視窗"']);
+assertEntryContains('zh-CN', zhCn, 'z.createElement("span",null,"Split")', ['"分割窗口"']);
+
+const exportArtifactTooltipKey = 'tooltip:k?"Saved!":"Export Artifact"';
+assertEntryContains('zh-TW', zhTw, exportArtifactTooltipKey, ['tooltip:k?"已儲存！":"匯出成品"']);
+assertEntryContains('zh-CN', zhCn, exportArtifactTooltipKey, ['tooltip:k?"已保存！":"导出成品"']);
+assertEntryContains('zh-TW', zhTw, 'dialogTitle:"Export Artifact"', ['dialogTitle:"匯出成品"']);
+assertEntryContains('zh-CN', zhCn, 'dialogTitle:"Export Artifact"', ['dialogTitle:"导出成品"']);
+assertEntryContains('zh-TW', zhTw, '"Export Artifact"', ['"匯出成品"']);
+assertEntryContains('zh-CN', zhCn, '"Export Artifact"', ['"导出成品"']);
+assertEntryContains('zh-TW', zhTw, '"Saved!"', ['"已儲存！"']);
+assertEntryContains('zh-CN', zhCn, '"Saved!"', ['"已保存！"']);
+
+const artifactTitleFunctionKey = 'function uA(a){if(!a.path)return"";a=zg(a);({artifactName:a}=SHa(a));if(QHa.test(a))return"Scratchpad";var [,b,c]=a.match(/^(.+?)_(\\d{13})$/)||[null,a,null];a=b.replace(/[_-]/g," ").replace(/([a-z])([A-Z])/g,"$1 $2").split(/\\s+/).filter(e=>e.length>0).map(e=>e.charAt(0).toUpperCase()+e.slice(1).toLowerCase()).join(" ");return c?`${a} (${THa(c)})`:a}';
+assertEntryContains('zh-TW', zhTw, artifactTitleFunctionKey, ['"Implementation Plan":"實施計畫"', '"Walkthrough":"變更導覽"', '"Task":"任務"', '"Scratchpad":"便簽"']);
+assertEntryContains('zh-CN', zhCn, artifactTitleFunctionKey, ['"Implementation Plan":"实施计划"', '"Walkthrough":"变更导览"', '"Task":"任务"', '"Scratchpad":"便签"']);
+
+const proceedWithPlanTooltipKey = 'ba=(0,z.useMemo)(()=>e.length===0?"Proceed with implementation plan":`Proceed with implementation plan and ${e.length} comment${e.length===1?"":"s"}`,[e.length])';
+assertEntryContains('zh-TW', zhTw, proceedWithPlanTooltipKey, ['繼續執行實施計畫']);
+assertEntryContains('zh-CN', zhCn, proceedWithPlanTooltipKey, ['继续执行实施计划']);
+assertEntryContains('zh-TW', zhTw, 'z.createElement("h2",{className:"text-sm font-medium"},"Submit comment",e.length<=1?"":"s")', ['"提交留言"']);
+assertEntryContains('zh-CN', zhCn, 'z.createElement("h2",{className:"text-sm font-medium"},"Submit comment",e.length<=1?"":"s")', ['"提交评论"']);
+assertEntryContains('zh-TW', zhTw, 'z.createElement("span",null,"Review ",e.length," comment",e.length===1?"":"s")', ['"檢視 "', '" 則留言"']);
+assertEntryContains('zh-CN', zhCn, 'z.createElement("span",null,"Review ",e.length," comment",e.length===1?"":"s")', ['"查看 "', '" 条评论"']);
+
+
 
 
 if (missingInCn.length > 0) {

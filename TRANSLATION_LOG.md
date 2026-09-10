@@ -52,6 +52,41 @@
 | ASK-001 | `z.createElement("span",null,e.length," question",e.length===1?"":"s")` 與 `prefix:a?"Asking":"Asked",content:\`${e.length} question...` | 提問數量與單複數動態；保留 `${e.length}` | `${e.length} 個問題`；`提問中`／`已提問` | `${e.length} 个问题`；`提问中`／`已提问` |
 | AUTH-001 | `Mvb` 組件中的 `Further action is required to use ${a}` 與 `Please verify your account...` | 帳戶資格與進一步動作面板；保留 `${a}` 產品名稱 | `需要採取進一步動作才能使用 ${a}`、`請驗證你的帳戶...`、`驗證`、`重新登入` | `需要采取进一步操作才能使用 ${a}`、`请验证你的账户...`、`验证`、`重新登录` |
 | GOAL-001 | `title:p.title||p.key`、`var J1=`、`zhTwActivityText` / `zhCnActivityText` | 側欄累積目標標題（單數 `Goal`／複數 `Goals`）；需以活動字典與 `J1` 雙重攔截 | `目標`；`N 個目標` | `目标`；`N 个目标` |
+| SPLIT-001 | `z.createElement("span",null,"Split")` 與 `z.createElement(T,{name:"splitscreen_vertical_add"...` | 側欄對話分割選單項目；2.12.2 minifier 變數更新 | `分割視窗` | `分割窗口` |
+| EXPORT-001 | `dialogTitle:"Export Artifact"` 與 `tooltip:k?"Saved!":"Export Artifact"` | 成品右上角操作選單匯出按鈕、對話方塊標題與儲存狀態 | `匯出成品`、`已儲存！` | `导出成品`、`已保存！` |
+| ARTIFACT-001 | `function uA(a)` 與 `ba=(0,z.useMemo)(()=>e.length===0?"Proceed with implementation plan"...` | 成品名稱動態格式化（`Implementation Plan` 等）與審核按鈕提示／留言互動 | `實施計畫`、`變更導覽`、`任務`、`便簽`；`繼續執行實施計畫` | `实施计划`、`变更导览`、`任务`、`便签`；`继续执行实施计划` |
+
+## 變更紀錄（2026-09-11）
+
+### 2026-09-11 | Antigravity 2.12.2 | `6963dc9`
+
+- 範圍：補齊側欄對話選單的 `Split`（分割視窗）、成品右上角 `⋮` 操作選單的 `Export Artifact`（匯出成品）與 `Saved!`（已儲存！），以及成品標題 `Implementation Plan`（實施計畫）動態本地化與審核流程介面。
+- 來源 anchor：
+  - 分割選單：`z.createElement(xR,null,z.createElement(T,{name:"splitscreen_vertical_add",size:16,className:"text-secondary-foreground shrink-0"}),z.createElement("span",null,"Split"))`。
+  - 成品操作：`dialogTitle:"Export Artifact"`、`tooltip:k?"Saved!":"Export Artifact"`。
+  - 成品名稱動態產生器：`function uA(a)`（產生 `displayName` 與 `sectionName`）。
+  - 成品審核提示與按鈕：`ba=(0,z.useMemo)(()=>e.length===0?"Proceed with implementation plan":`Proceed with implementation plan and ${e.length} comment${e.length===1?"":"s"}`,[e.length])`、`z.createElement("span",{className:"flex items-center gap-1 whitespace-nowrap"},"Proceed"...`、`z.createElement("h2",{className:"text-sm font-medium"},"Submit comment"...`、`z.createElement("span",null,"Review ",e.length," comment"...`。
+- 原因：
+  - `Split`：舊版字典記錄 `y.createElement` 結構，2.12.2 程式碼重構為 `z.createElement`，導致舊 anchor 失效。
+  - `Export Artifact`：原本完全未被字典收錄。
+  - `Implementation Plan`：成品檔名由 `uA(a)` 進行 Title Case 格式化後動態輸出為 `displayName`；透過在 `uA(a)` 回傳前注入字典映射，可安全本地化畫面名稱，同時不影響底層 `sourceUri` 與檔案系統操作。
+- 類型：固定文字與動態映射；保留底層 URI、時間戳記與留言數量。
+- zh-TW：
+  - `Split` → `分割視窗`。
+  - `Export Artifact` → `匯出成品`；`Saved!` → `已儲存！`。
+  - `Implementation Plan` → `實施計畫`、`Walkthrough` → `變更導覽`、`Task` → `任務`、`Scratchpad` → `便簽`。
+  - `Proceed with implementation plan` → `繼續執行實施計畫`；`Proceed` → `繼續執行`；`Submit comment` → `提交留言`；`Review N comment(s)` → `檢視 N 則留言`。
+- zh-CN：
+  - `Split` → `分割窗口`。
+  - `Export Artifact` → `导出成品`；`Saved!` → `已保存！`。
+  - `Implementation Plan` → `实施计划`、`Walkthrough` → `变更导览`、`Task` → `任务`、`Scratchpad` → `便签`。
+  - `Proceed with implementation plan` → `继续执行实施计划`；`Proceed` → `继续执行`；`Submit comment` → `提交评论`；`Review N comment(s)` → `查看 N 条评论`。
+- 修改檔案：`locales/zh-TW.json`、`locales/zh-CN.json`、`scripts/validate_locales.js`、本台帳。
+- 驗證：
+  - `npm run check` 通過（zh-TW 3,137 unique exact_properties，zh-CN 3,283 unique exact_properties，全覆蓋無重複）。
+  - `node scripts/patcher.js --lang zh-TW` 不部署建構通過（前端替換 2,901 詞條，語法校驗 100% 通過，打包 app.asar.patched 4.32 MB）。
+  - `node scripts/patcher.js --lang zh-CN` 不部署建構通過（前端替換 3,000 詞條，語法校驗 100% 通過，打包 app.asar.patched 4.32 MB）。
+- 部署與畫面驗收：尚未部署；桌面實際畫面仍為 `NOT VERIFIED`。
 
 ## 變更紀錄（2026-09-08）
 
